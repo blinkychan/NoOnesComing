@@ -9,11 +9,12 @@ A one-page site: the pitch video plays first (viewers can skip), then the pilot 
 | `index.html` | The page |
 | `script.pdf` | The script, shown inline and offered as the download |
 | `logo.png` | Title treatment, taken from the script's title page |
+| `mark.svg` | Earth/Mars mark from the invitation style |
 | `video.mp4` | **Add this.** Until it's here, visitors go straight to the script |
 
 ## Publish on GitHub Pages
 
-1. Create a new repo and upload everything in this folder to the root.
+1. Create a new repo and upload all of these files to the root (not inside a subfolder). If you uploaded an earlier version, replace every file.
 2. Repo **Settings → Pages → Build and deployment**: Source "Deploy from a branch", branch `main`, folder `/ (root)`. Save.
 3. After a minute the site is live at `https://<your-username>.github.io/<repo-name>/`.
 
@@ -27,8 +28,13 @@ A one-page site: the pitch video plays first (viewers can skip), then the pilot 
 
 - First visit: the video autoplays muted with a "Tap for sound" button (browsers don't allow autoplay with sound). Skip is always available. When the video ends or is skipped, the script opens.
 - Return visits in the same browser go straight to the script, with a "Video" button to rewatch.
-- Swapping the script: replace `script.pdf` with a new file of the same name. Update the draft date and page count in `index.html` if they change.
+- Viewers can drag or click the timeline to jump around, use the 10s back/forward buttons, or the arrow keys.
+- Swapping the script: replace `script.pdf` with a new file of the same name.
 
 ## Privacy note
 
 The page is marked `noindex` so search engines skip it, but anyone with the link can open it, and on a free GitHub plan the repo itself must be public, so `script.pdf` is visible there too. The video gate shapes the experience; it doesn't lock the script.
+
+## Seeing an old version?
+
+GitHub Pages caches for about 10 minutes. Wait a few minutes after uploading, then hard-refresh (Cmd+Shift+R / Ctrl+Shift+R).

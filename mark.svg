@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 128" width="184" height="128">
+<defs>
+    <radialGradient id="gEarth" cx="38%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#9cc0dc"/><stop offset=".35" stop-color="#4f7fab"/><stop offset=".75" stop-color="#2a4f78"/><stop offset="1" stop-color="#1c3756"/>
+    </radialGradient>
+    <radialGradient id="gMars" cx="60%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#ef9a74"/><stop offset=".35" stop-color="#d4613a"/><stop offset=".75" stop-color="#b2452a"/><stop offset="1" stop-color="#8a3220"/>
+    </radialGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .22 0" result="w"/>
+      <feComposite in="w" in2="SourceGraphic" operator="in" result="g"/>
+      <feBlend in="SourceGraphic" in2="g" mode="screen"/>
+    </filter>
+    <clipPath id="cEarth"><circle cx="62" cy="78" r="44"/></clipPath>
+    
+  </defs>
+      <line x1="92" y1="10" x2="92" y2="126" stroke="#1b2438" stroke-width="1"/>
+      <path d="M92 2 L94.2 11.8 L104 14 L94.2 16.2 L92 26 L89.8 16.2 L80 14 L89.8 11.8 Z" fill="#1b2438"/>
+      <circle cx="62" cy="78" r="44" fill="url(#gEarth)" filter="url(#grain)"/>
+      <circle cx="122" cy="78" r="44" fill="url(#gMars)" filter="url(#grain)"/>
+      <circle cx="122" cy="78" r="44" fill="#1b2438" opacity=".9" clip-path="url(#cEarth)"/>
+      <line x1="92" y1="40" x2="92" y2="116" stroke="#c9b8a8" stroke-width=".8" opacity=".6"/>
+    </svg>

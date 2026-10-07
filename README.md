@@ -10,6 +10,7 @@ A one-page site: the pitch video plays first (viewers can skip), then the pilot 
 | `script.pdf` | The script, shown inline and offered as the download |
 | `logo.png` | Title treatment, taken from the script's title page |
 | `mark.svg` | Earth/Mars mark from the invitation style |
+| `blink49.svg`, `belletrist.png` | Company logos, recolored to the page's navy |
 | `video.mp4` | **Add this.** Until it's here, visitors go straight to the script |
 | `tracking/` | Optional download tracking to a Google Sheet. See `tracking/SETUP.md` |
 

@@ -11,6 +11,7 @@ A one-page site: the pitch video plays first (viewers can skip), then the pilot 
 | `logo.png` | Title treatment, taken from the script's title page |
 | `mark.svg` | Earth/Mars mark from the invitation style |
 | `video.mp4` | **Add this.** Until it's here, visitors go straight to the script |
+| `tracking/` | Optional download tracking to a Google Sheet. See `tracking/SETUP.md` |
 
 ## Publish on GitHub Pages
 
@@ -27,9 +28,13 @@ A one-page site: the pitch video plays first (viewers can skip), then the pilot 
 ## How it behaves
 
 - First visit: the video autoplays muted with a "Tap for sound" button (browsers don't allow autoplay with sound). Skip is always available. When the video ends or is skipped, the script opens.
-- Return visits in the same browser go straight to the script, with a "Video" button to rewatch.
+- Return visits in the same browser go straight to the script. The step 1 checkmark in the header replays the video.
 - Viewers can drag or click the timeline to jump around, use the 10s back/forward buttons, or the arrow keys.
 - Swapping the script: replace `script.pdf` with a new file of the same name.
+
+## Tracking who downloads
+
+See `tracking/SETUP.md`. Short version: a Google Sheet logs each visit, and you send each person a link ending in `?r=their-name`.
 
 ## Privacy note
 

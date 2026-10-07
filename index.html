@@ -43,6 +43,10 @@ button, a { font: inherit; color: inherit; }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .brand .mark { width: 46px; height: auto; flex: none; }
 .brand .logo { height: 20px; width: auto; min-width: 0; }
+.brand .hsep { width: 1px; height: 26px; background: var(--hair); flex: none; }
+.brand .cos { display: flex; align-items: center; gap: 18px; flex: none; }
+.brand .cos .blink { height: 17px; width: auto; }
+.brand .cos .belle { height: 24px; width: auto; }
 
 /* ---------- Two-step rail ---------- */
 .steps { display: flex; align-items: center; gap: 12px; }
@@ -130,7 +134,8 @@ button.step:hover { color: var(--mars); }
   background: rgba(239,235,227,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--hair);
 }
-.bar-in { max-width: 1060px; margin-inline: auto; padding: 10px 16px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+.bar-in { max-width: 1060px; margin-inline: auto; padding: 10px 16px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; }
+.bar-in .steps { justify-self: center; }
 .bar-in .dl { justify-self: end; }
 
 .room { padding-inline: 16px; padding-block: 40px 0; }
@@ -158,7 +163,7 @@ button.step:hover { color: var(--mars); }
 .horizon::before { width: 140vw; height: 140vw; left: -62vw; top: 40px; background: radial-gradient(circle at 60% 8%, #6f95b8 0, #3b6894 18%, #24496f 40%); opacity: .85; }
 .horizon::after { width: 130vw; height: 130vw; right: -55vw; top: 22px; mix-blend-mode: multiply; background: radial-gradient(circle at 40% 6%, #e48a62 0, #c9532f 20%, #a63f22 42%); opacity: .9; }
 /* Partner strip, like the agency row at the foot of the invitation */
-.partners { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 40px); margin-bottom: 26px; }
+.partners { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 40px); }
 .partners .sep { width: 1px; align-self: stretch; background: var(--hair); }
 .partners .blink { height: 24px; width: auto; }
 .partners .belle { height: 34px; width: auto; }
@@ -168,13 +173,20 @@ button.step:hover { color: var(--mars); }
 .foot .partners .blink { height: 20px; }
 .foot .partners .belle { height: 28px; }
 
+@media (max-width: 960px) { .steps .label { display: none; } .steps .line { width: 22px; } .brand .logo { display: none; } }
 /* Phone: download moves to a full-width bar at the bottom, in thumb reach */
 .dock { display: none; }
 @media (max-width: 700px) {
   .bar-in { grid-template-columns: 1fr auto; }
+  .bar-in .steps { justify-self: end; }
   .bar-in .dl { display: none; }
-  .brand .logo { height: 16px; }
-  .brand .mark { width: 36px; }
+  .brand .logo { display: none; }
+  .brand .mark { width: 34px; }
+  .brand { gap: 10px; }
+  .brand .cos { gap: 12px; }
+  .brand .cos .blink { height: 14px; }
+  .brand .cos .belle { height: 20px; }
+  .brand .hsep { height: 22px; }
   .steps .label { display: none; }
   .steps .line { width: 22px; }
   .room { padding-block: 24px 0; }
@@ -189,13 +201,9 @@ button.step:hover { color: var(--mars); }
   .dock .dl { width: 100%; padding-block: 16px 15px; font-size: 14px; }
   .foot { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px); }
   .hero-dl { padding-block: 20px 19px; }
-  .partners { margin-bottom: 18px; }
-  .partners .blink { height: 19px; }
-  .partners .belle { height: 27px; }
   .foot { justify-content: center; }
 }
 @media (max-width: 600px) {
-  .gate-head .brand .logo { display: none; }
   #playLbl, .seek .lbl { display: none; }
   .drawing::before { left: -8px; right: -8px; }
   #soundChip { bottom: 12px; padding: 9px 14px 8px; font-size: 11px; }
@@ -214,6 +222,11 @@ button.step:hover { color: var(--mars); }
     <div class="brand">
       <img class="mark" src="mark.svg" width="184" height="128" alt="">
       <img class="logo" src="logo.png" alt="No One's Coming!">
+        <span class="hsep" aria-hidden="true"></span>
+        <span class="cos" aria-label="Blink49 Studios and Belletrist">
+          <img class="blink" src="blink49.svg" alt="Blink49 Studios">
+          <img class="belle" src="belletrist.png" alt="Belletrist">
+        </span>
     </div>
     <div class="steps caps" aria-label="Step 1 of 2">
       <span class="step active"><span class="dot">1</span><span class="label">Video</span></span>
@@ -261,6 +274,11 @@ button.step:hover { color: var(--mars); }
       <div class="brand">
         <img class="mark" src="mark.svg" width="184" height="128" alt="">
         <img class="logo" src="logo.png" alt="No One's Coming!">
+        <span class="hsep" aria-hidden="true"></span>
+        <span class="cos" aria-label="Blink49 Studios and Belletrist">
+          <img class="blink" src="blink49.svg" alt="Blink49 Studios">
+          <img class="belle" src="belletrist.png" alt="Belletrist">
+        </span>
       </div>
       <div class="steps caps" aria-label="Step 2 of 2">
         <button class="step done" id="stepVideo" type="button" aria-label="Replay video">
@@ -279,11 +297,6 @@ button.step:hover { color: var(--mars); }
 
   <main class="room">
     <div class="col">
-      <div class="partners" aria-label="Blink49 Studios and Belletrist">
-        <img class="blink" src="blink49.svg" alt="Blink49 Studios">
-        <span class="sep" aria-hidden="true"></span>
-        <img class="belle" src="belletrist.png" alt="Belletrist">
-      </div>
       <a class="dl hero-dl" id="heroDl" data-where="above script" href="script.pdf" download="No One's Coming - Pilot.pdf">
         <svg class="dl-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v8l3-3 1.4 1.4L8 12.8 2.6 7.4 4 6l3 3z"/><path d="M2 13h12v2H2z"/></svg>
         <svg class="done-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 11.6L2.4 7.8l1.4-1.4 2.4 2.4 6-6 1.4 1.4z"/><path d="M2 13h12v2H2z"/></svg>

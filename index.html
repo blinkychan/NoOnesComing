@@ -96,11 +96,11 @@ button.step:hover { color: var(--mars); }
 #gate.leaving { opacity: 0; pointer-events: none; }
 .gate-head { max-width: 1060px; width: 100%; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .stage { display: grid; place-items: center; min-height: 0; padding-block: 22px 10px; }
-.drawing { position: relative; width: min(100%, 1060px, calc((100dvh - 230px) * 16 / 9)); max-width: 100%; }
+.drawing { --ar: 16 / 9; position: relative; width: min(100%, 1060px, calc((100dvh - 230px) * var(--ar))); max-width: 100%; }
 .drawing::before, .drawing::after { content: ""; position: absolute; pointer-events: none; }
 .drawing::before { left: -18px; right: -18px; top: 0; bottom: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
 .drawing::after { top: -18px; bottom: -18px; left: 0; right: 0; border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); }
-.frame { position: relative; aspect-ratio: 16 / 9; width: 100%; background: #0e121b; overflow: hidden; z-index: 1; box-shadow: 0 22px 44px -26px rgba(27,36,56,.55), 0 0 0 1px rgba(27,36,56,.08); }
+.frame { position: relative; aspect-ratio: var(--ar); width: 100%; background: #0e121b; overflow: hidden; z-index: 1; box-shadow: 0 22px 44px -26px rgba(27,36,56,.55), 0 0 0 1px rgba(27,36,56,.08); }
 .frame video { width: 100%; height: 100%; display: block; object-fit: contain; background: #0e121b; cursor: pointer; }
 .overlay { position: absolute; border: 0; cursor: pointer; font-family: var(--font-caps); text-transform: uppercase; letter-spacing: .2em; font-weight: 500; }
 #soundChip {
@@ -594,9 +594,13 @@ var LOG_URL = "https://script.google.com/macros/s/AKfycbykM2ddH9lfLYMK-mOrNTmkxm
       room.hidden = false;
     }
   }
-  vid.addEventListener("loadedmetadata", function () { paint(0); decide(true); });
+  // Size the frame (and envelope) to the video's own shape so there are no black bars.
+  function fitFrame() {
+    if (vid.videoWidth && vid.videoHeight) document.querySelector(".drawing").style.setProperty("--ar", vid.videoWidth + " / " + vid.videoHeight);
+  }
+  vid.addEventListener("loadedmetadata", function () { fitFrame(); paint(0); decide(true); });
   vid.addEventListener("error", function () { decide(false); });
-  if (vid.readyState >= 1) { paint(vid.currentTime); decide(true); }
+  if (vid.readyState >= 1) { fitFrame(); paint(vid.currentTime); decide(true); }
   else if (vid.error) decide(false);
   setTimeout(function () { decide(vid.readyState >= 1); }, 4000);
 
